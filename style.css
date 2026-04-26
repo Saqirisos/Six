@@ -2,23 +2,30 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  cursor: none !important;
 }
 
 html, body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   background: black;
   color: white;
   font-family: Arial, sans-serif;
-  overflow: hidden;
-  cursor: url("cursor.png") 5 5, auto;
 }
 
-a, #enter-screen {
-  cursor: url("cursor.png") 5 5, pointer;
+#custom-cursor {
+  position: fixed;
+  width: 42px;
+  height: 42px;
+  background: url("cursor.png") center/contain no-repeat;
+  pointer-events: none;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 6px white);
 }
 
 .bg {
@@ -33,8 +40,7 @@ a, #enter-screen {
 .overlay {
   position: fixed;
   inset: 0;
-  background:
-    radial-gradient(circle at center, rgba(120, 0, 20, 0.28), rgba(0,0,0,0.94) 70%);
+  background: radial-gradient(circle at center, rgba(120,0,20,0.35), rgba(0,0,0,0.94) 72%);
   z-index: -1;
 }
 
@@ -110,7 +116,7 @@ a, #enter-screen {
 }
 
 .icons {
-  margin: 16px 0 16px;
+  margin: 16px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,10 +141,9 @@ a, #enter-screen {
 }
 
 .icon-btn img {
-  width: 18px !important;
-  height: 18px !important;
+  width: 18px;
+  height: 18px;
   object-fit: contain;
-  display: block;
 }
 
 .spotify-card {

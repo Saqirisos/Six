@@ -14,7 +14,7 @@ a, button, #enter-screen {
   cursor: url("cursor.png") 5 5, pointer;
 }
 
-/* FUNDO */
+/* BODY */
 body {
   font-family: Arial, Helvetica, sans-serif;
   color: white;
@@ -34,10 +34,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
   z-index: 999;
-  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.5s ease;
+}
+
+.enter-text {
+  text-align: center;
+  font-size: 32px;
   letter-spacing: 2px;
+}
+
+.enter-text span {
+  font-size: 14px;
+  opacity: 0.5;
 }
 
 /* CONTAINER */
@@ -60,6 +70,7 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 25px red;
   margin-bottom: 15px;
+  animation: pulse 2s infinite;
 }
 
 /* NOME */
@@ -74,36 +85,7 @@ body {
   font-size: 14px;
   opacity: 0.7;
   margin-bottom: 20px;
-}
-
-/* ICONES */
-.icons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin-bottom: 25px;
-}
-
-.icon {
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background: #111;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px rgba(255,255,255,0.2);
-  transition: 0.2s;
-}
-
-.icon img {
-  width: 18px;
-  filter: brightness(0) invert(1);
-}
-
-.icon:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px white;
+  line-height: 1.4;
 }
 
 /* CARD MUSICA */
@@ -115,7 +97,7 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  width: 280px;
+  width: 260px;
   margin-left: auto;
   margin-right: auto;
   box-shadow: 0 0 15px rgba(255,0,0,0.4);
@@ -143,13 +125,9 @@ body {
   opacity: 0.7;
 }
 
-/* ANIMAÇÃO */
+/* ANIMAÇÃO GLOW */
 @keyframes pulse {
   0% { box-shadow: 0 0 15px red; }
-  50% { box-shadow: 0 0 30px red; }
+  50% { box-shadow: 0 0 35px red; }
   100% { box-shadow: 0 0 15px red; }
-}
-
-.avatar {
-  animation: pulse 2s infinite;
 }

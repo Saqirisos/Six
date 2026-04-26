@@ -4,38 +4,21 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: Arial;
   color: white;
   background: black;
   overflow: hidden;
 
-  /* cursor custom */
   cursor: url("cursor.png") 16 16, auto;
 }
 
-a, button, .btn, #enter-screen {
-  cursor: url("cursor.png") 16 16, pointer;
-}
-
-/* FUNDO */
 .bg {
   position: fixed;
   inset: 0;
   background: url("bg.gif") center/cover no-repeat;
   filter: blur(12px) brightness(0.35);
-  transform: scale(1.05);
-  z-index: -3;
 }
 
-/* OVERLAY ESCURO */
-.dark-overlay {
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.85));
-  z-index: -2;
-}
-
-/* TELA DE ENTRADA */
 #enter-screen {
   position: fixed;
   inset: 0;
@@ -44,7 +27,6 @@ a, button, .btn, #enter-screen {
   align-items: center;
   justify-content: center;
   z-index: 999;
-
   transition: 0.6s;
 }
 
@@ -54,101 +36,59 @@ a, button, .btn, #enter-screen {
   pointer-events: none;
 }
 
-/* TEXTO ENTRADA */
 #enter-screen h1 {
-  font-size: 32px;
-  text-shadow: 0 0 15px crimson;
-  animation: pulse 2s infinite;
+  font-size: 30px;
+  text-shadow: 0 0 15px white;
 }
 
-/* CENTRO */
 .center {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-
-  animation: fadeIn 1.2s ease;
 }
 
-/* FOTO */
 .pfp {
   width: 130px;
-  height: 130px;
   border-radius: 50%;
-  object-fit: cover;
-
-  border: 2px solid crimson;
-  box-shadow: 0 0 20px crimson;
-
-  transition: 0.3s;
+  border: 2px solid white;
+  box-shadow: 0 0 20px white;
 }
 
-.pfp:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 35px crimson;
-}
+.bio { opacity: 0.85; }
+.about { opacity: 0.6; font-size: 14px; }
 
-/* NOME */
-h1 {
-  margin: 10px 0 5px;
-}
-
-/* BIO */
-.bio {
-  opacity: 0.85;
-  margin: 5px 0;
-}
-
-/* ABOUT */
-.about {
-  opacity: 0.6;
-  font-size: 14px;
-  margin-bottom: 15px;
-}
-
-/* ICONES */
 .icons {
-  margin: 10px 0;
+  margin: 15px 0;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
 }
 
-.icons img {
-  width: 28px;
-  margin: 0 10px;
-  filter: invert(1);
+.icon {
+  width: 36px;
+  height: 36px;
+  fill: white;
+
+  background: rgba(255,255,255,0.05);
+  border-radius: 50%;
+  padding: 8px;
+
+  box-shadow: 0 0 10px rgba(255,255,255,0.4);
+
   transition: 0.3s;
 }
 
-.icons img:hover {
-  transform: scale(1.2);
+.icon:hover {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px white;
 }
 
-/* CARD SPOTIFY */
 .spotify-card {
   margin-top: 15px;
-  padding: 15px;
-  border-radius: 15px;
-
+  padding: 12px;
+  border-radius: 12px;
   background: rgba(0,0,0,0.6);
   border: 1px solid rgba(255,255,255,0.2);
-
-  backdrop-filter: blur(10px);
-}
-
-/* ANIMAÇÕES */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -45%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
-}
-
-@keyframes pulse {
-  0%,100% { opacity: 0.7; }
-  50% { opacity: 1; }
 }

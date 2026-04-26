@@ -40,7 +40,7 @@ a, #enter-screen {
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
 }
 
-/* ENTER */
+/* CLICK SCREEN */
 #enter-screen {
   position: fixed;
   inset: 0;
@@ -49,7 +49,7 @@ a, #enter-screen {
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.8s ease;
+  transition: 0.8s;
 }
 
 #enter-screen.hide {
@@ -84,25 +84,21 @@ a, #enter-screen {
   animation: appear 1s cubic-bezier(.2,.8,.2,1);
 }
 
-/* FOTO */
+/* PFP */
 .pfp {
   width: 130px;
   height: 130px;
   border-radius: 50%;
   border: 2px solid white;
-  animation: glowPulse 3s infinite ease-in-out;
+  animation: glowPulse 3s infinite;
 }
 
 @keyframes glowPulse {
   0%,100% {
-    box-shadow:
-      0 0 18px white,
-      0 0 35px crimson;
+    box-shadow: 0 0 18px white, 0 0 35px crimson;
   }
   50% {
-    box-shadow:
-      0 0 30px white,
-      0 0 70px crimson;
+    box-shadow: 0 0 30px white, 0 0 70px crimson;
   }
 }
 
@@ -110,17 +106,7 @@ a, #enter-screen {
 .name {
   font-size: 34px;
   margin: 10px 0;
-  position: relative;
-}
-
-.name::after {
-  content: "Six";
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: crimson;
-  opacity: 0.2;
-  transform: translate(2px, -2px);
+  text-shadow: 0 0 12px white;
 }
 
 .bio {

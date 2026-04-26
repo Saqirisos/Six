@@ -3,6 +3,12 @@ const USER_ID = "1038593406148038778";
 const enter = document.getElementById("enter-screen");
 const music = document.getElementById("music");
 const card = document.getElementById("card");
+const cursor = document.getElementById("custom-cursor");
+
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = `${e.clientX}px`;
+  cursor.style.top = `${e.clientY}px`;
+});
 
 enter.addEventListener("click", async () => {
   enter.classList.add("hide");

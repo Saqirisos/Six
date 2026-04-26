@@ -1,47 +1,33 @@
-// EDITA TUDO AQUI, SEM CAÇAR NO CÓDIGO
+const USER_ID = "1038593406148038778";
 
-const config = {
-  enterTitle: "bem vindo ao inferno",
-  enterSubtitle: "click to enter",
-
-  name: "Six",
-
-  bio: `eu ainda penso<br>mas já não digo mais nada`,
-  about: `só aprendi a lidar com o que ficou`,
-
-  spotifyUrl: "https://open.spotify.com/user/s3q266mq8jbsca79dc3tbyz3j?si=799b577b5d5f4300&nd=1&dlsi=b581cbcf1a7d46cf",
-  discordUrl: "https://discord.gg/consumed",
-
-  spotifyTitle: "Spotify",
-  spotifyDesc: "sixconsumed",
-
-  musicVolume: 0.35
-};
-
-// NÃO MEXE DAQUI PRA BAIXO SE NÃO PRECISAR
-
-document.getElementById("enter-title").innerHTML = config.enterTitle;
-document.getElementById("enter-subtitle").innerHTML = config.enterSubtitle;
-
-document.getElementById("name").innerHTML = config.name;
-document.getElementById("bio").innerHTML = config.bio;
-document.getElementById("about").innerHTML = config.about;
-
-document.getElementById("spotify-link").href = config.spotifyUrl;
-document.getElementById("discord-link").href = config.discordUrl;
-
-document.getElementById("spotify-title").innerHTML = config.spotifyTitle;
-document.getElementById("spotify-desc").innerHTML = config.spotifyDesc;
-
-const enterScreen = document.getElementById("enter-screen");
+const card = document.getElementById("card");
 const music = document.getElementById("music");
 
-music.volume = config.musicVolume;
+document.getElementById("enter-screen").onclick = () => {
+  document.getElementById("enter-screen").style.display = "none";
+  music.play();
+};
 
-enterScreen.addEventListener("click", () => {
-  enterScreen.classList.add("hide");
+async function getSpotify() {
+  try {
+    const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
+    const data = await res.json();
 
-  music.play().catch(() => {
-    console.log("O navegador bloqueou o autoplay. Clique novamente.");
-  });
-});
+    if (data.data.listening_to_spotify) {
+      const song = data.data.spotify;
+
+      card.innerHTML = `
+        <strong>♫ ouvindo agora</strong><br>
+        ${song.song}<br>
+        <span style="opacity:0.6">${song.artist}</span>
+      `;
+    } else {
+      card.innerHTML = `não estou ouvindo nada agora`;
+    }
+  } catch {
+    card.innerHTML = "erro ao carregar";
+  }
+}
+
+setInterval(getSpotify, 5000);
+getSpotify();

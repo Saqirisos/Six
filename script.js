@@ -8,11 +8,9 @@ enter.addEventListener("click", async () => {
   enter.classList.add("hide");
 
   try {
-    music.volume = 0.35;
+    music.volume = 0.3;
     await music.play();
-  } catch (e) {
-    console.log("música local não tocou");
-  }
+  } catch {}
 });
 
 async function updateSpotify() {
@@ -24,7 +22,7 @@ async function updateSpotify() {
       card.innerHTML = `
         <div class="album-placeholder"></div>
         <div class="track-info">
-          <b>nada tocando agora</b>
+          <b>nada tocando</b>
           <span>spotify offline</span>
           <div class="progress"><div id="progress-bar"></div></div>
         </div>
@@ -34,11 +32,8 @@ async function updateSpotify() {
 
     const s = json.data.spotify;
 
-    const start = s.timestamps.start;
-    const end = s.timestamps.end;
-    const now = Date.now();
-
-    const percent = Math.min(100, Math.max(0, ((now - start) / (end - start)) * 100));
+    const progress = ((Date.now() - s.timestamps.start) /
+                     (s.timestamps.end - s.timestamps.start)) * 100;
 
     card.innerHTML = `
       <img src="${s.album_art_url}" class="album-cover">
@@ -48,17 +43,16 @@ async function updateSpotify() {
         <span>${s.artist}</span>
 
         <div class="progress">
-          <div id="progress-bar" style="width:${percent}%"></div>
+          <div id="progress-bar" style="width:${progress}%"></div>
         </div>
       </div>
     `;
-  } catch (e) {
+  } catch {
     card.innerHTML = `
       <div class="album-placeholder"></div>
       <div class="track-info">
-        <b>erro ao carregar</b>
-        <span>lanyard não respondeu</span>
-        <div class="progress"><div id="progress-bar"></div></div>
+        <b>erro</b>
+        <span>lanyard offline</span>
       </div>
     `;
   }

@@ -8,6 +8,8 @@ body {
   color: white;
   background: black;
   overflow: hidden;
+
+  /* cursor custom */
   cursor: url("cursor.png") 16 16, auto;
 }
 
@@ -15,6 +17,7 @@ a, button, .btn, #enter-screen {
   cursor: url("cursor.png") 16 16, pointer;
 }
 
+/* FUNDO */
 .bg {
   position: fixed;
   inset: 0;
@@ -24,13 +27,15 @@ a, button, .btn, #enter-screen {
   z-index: -3;
 }
 
+/* OVERLAY ESCURO */
 .dark-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle, rgba(0,0,0,0.15), rgba(0,0,0,0.85));
+  background: radial-gradient(circle, rgba(0,0,0,0.2), rgba(0,0,0,0.85));
   z-index: -2;
 }
 
+/* TELA DE ENTRADA */
 #enter-screen {
   position: fixed;
   inset: 0;
@@ -38,50 +43,45 @@ a, button, .btn, #enter-screen {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 99;
-  transition: opacity 0.8s ease, visibility 0.8s ease;
+  z-index: 999;
+
+  transition: 0.6s;
 }
 
 #enter-screen.hide {
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
 }
 
-.enter-box {
-  text-align: center;
-  animation: pulse 2s infinite ease-in-out;
+/* TEXTO ENTRADA */
+#enter-screen h1 {
+  font-size: 32px;
+  text-shadow: 0 0 15px crimson;
+  animation: pulse 2s infinite;
 }
 
-#enter-title {
-  font-size: 34px;
-  letter-spacing: 2px;
-  text-transform: lowercase;
-  text-shadow: 0 0 18px crimson;
-}
-
-#enter-subtitle {
-  opacity: 0.65;
-  font-size: 14px;
-}
-
+/* CENTRO */
 .center {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 90%;
-  max-width: 420px;
   transform: translate(-50%, -50%);
   text-align: center;
-  animation: fadeIn 1.4s ease;
+
+  animation: fadeIn 1.2s ease;
 }
 
+/* FOTO */
 .pfp {
-  width: 135px;
-  height: 135px;
-  object-fit: cover;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
+  object-fit: cover;
+
   border: 2px solid crimson;
-  box-shadow: 0 0 22px crimson;
+  box-shadow: 0 0 20px crimson;
+
   transition: 0.3s;
 }
 
@@ -90,82 +90,53 @@ a, button, .btn, #enter-screen {
   box-shadow: 0 0 35px crimson;
 }
 
-#name {
-  margin: 12px 0 6px;
-  font-size: 32px;
-  text-shadow: 0 0 12px white;
+/* NOME */
+h1 {
+  margin: 10px 0 5px;
 }
 
+/* BIO */
 .bio {
-  margin: 8px 0 0;
   opacity: 0.85;
-  line-height: 1.4;
+  margin: 5px 0;
 }
 
+/* ABOUT */
 .about {
-  margin: 10px 0 18px;
-  opacity: 0.58;
+  opacity: 0.6;
   font-size: 14px;
-  line-height: 1.4;
+  margin-bottom: 15px;
 }
 
-.buttons {
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  margin-bottom: 14px;
+/* ICONES */
+.icons {
+  margin: 10px 0;
 }
 
-.btn {
-  padding: 9px 16px;
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 999px;
-  text-decoration: none;
-  color: white;
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(8px);
-  transition: 0.25s;
+.icons img {
+  width: 28px;
+  margin: 0 10px;
+  filter: invert(1);
+  transition: 0.3s;
 }
 
-.btn:hover {
-  background: rgba(220,20,60,0.35);
-  box-shadow: 0 0 15px crimson;
+.icons img:hover {
+  transform: scale(1.2);
 }
 
+/* CARD SPOTIFY */
 .spotify-card {
-  width: 100%;
-  padding: 14px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  text-align: left;
-  background: rgba(10,10,10,0.55);
-  border: 1px solid rgba(255,255,255,0.15);
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 15px;
+
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+
   backdrop-filter: blur(10px);
 }
 
-.spotify-icon {
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: crimson;
-  box-shadow: 0 0 18px crimson;
-  font-size: 26px;
-}
-
-.spotify-card h3 {
-  margin: 0;
-}
-
-.spotify-card p {
-  margin: 4px 0 0;
-  opacity: 0.65;
-}
-
+/* ANIMAÇÕES */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -178,34 +149,6 @@ a, button, .btn, #enter-screen {
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 0.75;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-.icons {
-    margin: 15px 0;
-}
-
-.icons img {
-    width: 30px;
-    margin: 0 10px;
-    filter: invert(1);
-    transition: 0.3s;
-}
-
-.icons img:hover {
-    transform: scale(1.2);
-}
-
-.spotify-card {
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 15px;
-    background: rgba(0,0,0,0.6);
-    border: 1px solid rgba(255,255,255,0.2);
-    backdrop-filter: blur(10px);
+  0%,100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }

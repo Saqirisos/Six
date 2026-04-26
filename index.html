@@ -29,10 +29,20 @@
       só aprendi a lidar com o que ficou
     </div>
 
+    <!-- ICONES -->
+    <div class="icons">
+      <a href="https://open.spotify.com/user/s3q266mq8jbsca79dc3tbyz3j" target="_blank" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png">
+      </a>
+
+      <a href="https://discord.com/users/1038593406148038778" target="_blank" class="icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png">
+      </a>
+    </div>
+
+    <!-- CARD SPOTIFY -->
     <div id="spotify-card">
-      <div class="song-info">
-        carregando...
-      </div>
+      <div class="song-info">carregando...</div>
     </div>
 
   </div>
@@ -45,11 +55,40 @@ const enter = document.getElementById("enter-screen");
 const content = document.getElementById("main-content");
 const music = document.getElementById("music");
 
-enter.addEventListener("click", () => {
+enter.onclick = () => {
   enter.style.display = "none";
   content.style.display = "flex";
   music.play().catch(() => {});
-});
+};
+
+/* LANYARD (SPOTIFY) */
+async function updateSpotify() {
+  try {
+    const res = await fetch("https://api.lanyard.rest/v1/users/1038593406148038778");
+    const data = await res.json();
+
+    const card = document.getElementById("spotify-card");
+
+    if (data.success && data.data.listening_to_spotify) {
+      const s = data.data.spotify;
+
+      card.innerHTML = `
+        <img src="${s.album_art_url}">
+        <div class="song-info">
+          <div class="song-title">${s.song}</div>
+          <div class="song-artist">${s.artist}</div>
+        </div>
+      `;
+    } else {
+      card.innerHTML = "não estou ouvindo nada agora";
+    }
+  } catch {
+    document.getElementById("spotify-card").innerHTML = "erro spotify";
+  }
+}
+
+setInterval(updateSpotify, 3000);
+updateSpotify();
 </script>
 
 </body>

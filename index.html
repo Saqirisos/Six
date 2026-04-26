@@ -5,71 +5,52 @@
   <title>Six</title>
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <!-- CLICK TO ENTER -->
 <div id="enter-screen">
-  <div class="enter-content">
-    <h1>bem vindo ao inferno</h1>
-    <p>click to enter</p>
+  <div class="enter-text">
+    bem vindo ao inferno<br>
+    <span>click to enter</span>
   </div>
 </div>
 
-<!-- FUNDO -->
-<div class="bg"></div>
-<div class="overlay"></div>
-<div class="noise"></div>
+<!-- CONTEUDO -->
+<div class="container" id="main-content" style="display:none;">
+  <div class="profile">
 
-<!-- CONTEÚDO -->
-<main class="center">
+    <img src="pfp.png" class="avatar">
 
-  <img src="pfp.png" class="pfp">
+    <div class="name">Six</div>
 
-  <h1 class="name">Six</h1>
+    <div class="bio">
+      eu ainda penso<br>
+      mas já não digo mais nada<br>
+      só aprendi a lidar com o que ficou
+    </div>
 
-  <p class="bio">
-    eu ainda penso<br>
-    mas já não digo mais nada
-  </p>
-
-  <p class="about">
-    só aprendi a lidar com o que ficou
-  </p>
-
-  <!-- ÍCONES -->
-  <div class="icons">
-    <a href="https://open.spotify.com/user/s3q266mq8jbsca79dc3tbyz3j" target="_blank">
-      <img src="https://cdn.simpleicons.org/spotify/white" class="icon">
-    </a>
-
-    <a href="https://discord.com/users/1038593406148038778" target="_blank">
-      <img src="https://cdn.simpleicons.org/discord/white" class="icon">
-    </a>
-  </div>
-
-  <!-- SPOTIFY -->
-  <section class="spotify-card" id="card">
-    <div class="album-placeholder"></div>
-
-    <div class="track-info">
-      <b>carregando...</b>
-      <span>aguarde</span>
-
-      <div class="progress">
-        <div id="progress-bar"></div>
+    <div id="spotify-card">
+      <div class="song-info">
+        carregando...
       </div>
     </div>
-  </section>
 
-</main>
+  </div>
+</div>
 
-<!-- MÚSICA -->
-<audio id="music" loop>
-  <source src="music.mp3">
-</audio>
+<audio id="music" src="music.mp3"></audio>
 
-<script src="script.js"></script>
+<script>
+const enter = document.getElementById("enter-screen");
+const content = document.getElementById("main-content");
+const music = document.getElementById("music");
+
+enter.addEventListener("click", () => {
+  enter.style.display = "none";
+  content.style.display = "flex";
+  music.play().catch(() => {});
+});
+</script>
 
 </body>
 </html>

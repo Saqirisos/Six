@@ -1,19 +1,21 @@
 body {
     margin: 0;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
     color: white;
     background: black;
     overflow: hidden;
 }
 
+/* fundo */
 .bg {
     position: fixed;
     width: 100%;
     height: 100%;
     background: url("bg.gif") center/cover no-repeat;
-    filter: blur(12px) brightness(0.4);
+    filter: blur(14px) brightness(0.35);
 }
 
+/* centro */
 .center {
     position: absolute;
     top: 50%;
@@ -22,15 +24,44 @@ body {
     text-align: center;
 }
 
+/* foto */
 .pfp {
-    width: 120px;
+    width: 130px;
     border-radius: 50%;
+    border: 2px solid red;
+    box-shadow: 0 0 20px red;
+    transition: 0.3s;
 }
 
+.pfp:hover {
+    transform: scale(1.05);
+}
+
+/* nome */
+h1 {
+    margin-top: 10px;
+    font-size: 28px;
+}
+
+/* bio */
 .bio {
-    opacity: 0.8;
+    opacity: 0.85;
+    margin-top: 5px;
 }
 
+/* about */
 .about {
+    margin-top: 10px;
+    font-size: 14px;
     opacity: 0.6;
+}
+
+/* leve animação */
+.center {
+    animation: fade 1.5s ease;
+}
+
+@keyframes fade {
+    from {opacity: 0; transform: translate(-50%, -60%);}
+    to {opacity: 1; transform: translate(-50%, -50%);}
 }

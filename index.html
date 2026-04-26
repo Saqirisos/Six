@@ -1,49 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Six</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<title>Six</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-  <div id="enter-screen">
-    <div class="enter-box">
-      <h1 id="enter-title">bem vindo ao inferno</h1>
-      <p id="enter-subtitle">click to enter</p>
-    </div>
+
+<div id="enter-screen">
+  <h1>bem vindo ao inferno</h1>
+</div>
+
+<div class="bg"></div>
+
+<div class="center">
+
+  <img src="pfp.png" class="pfp">
+
+  <h1>Six</h1>
+
+  <p class="bio">
+    eu ainda penso<br>
+    mas já não digo mais nada
+  </p>
+
+  <p class="about">
+    só aprendi a lidar com o que ficou
+  </p>
+
+  <!-- ICONES -->
+  <div class="icons">
+    <a href="https://open.spotify.com/user/s3q266mq8jbsca79dc3tbyz3j" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/174/174872.png">
+    </a>
+
+    <a href="https://discord.com/users/1038593406148038778" target="_blank">
+      <img src="https://cdn-icons-png.flaticon.com/512/2111/2111370.png">
+    </a>
   </div>
 
-  <div class="bg"></div>
-  <div class="dark-overlay"></div>
+  <!-- CARD DINÂMICO -->
+  <div class="spotify-card" id="card">
+    <p>carregando...</p>
+  </div>
 
-  <main class="center">
-    <img src="pfp.png" class="pfp" />
+</div>
 
-    <h1 id="name">Six</h1>
+<audio id="music" loop>
+  <source src="music.mp3">
+</audio>
 
-    <p id="bio" class="bio"></p>
-    <p id="about" class="about"></p>
+<script src="script.js"></script>
 
-    <div class="buttons">
-      <a id="spotify-link" class="btn" target="_blank">Spotify</a>
-      <a id="discord-link" class="btn" target="_blank">Discord</a>
-    </div>
-
-    <section class="spotify-card">
-      <div class="spotify-icon">♫</div>
-      <div>
-        <h3 id="spotify-title">Spotify</h3>
-        <p id="spotify-desc">sixconsumed</p>
-      </div>
-    </section>
-  </main>
-
-  <audio id="music" loop>
-    <source src="music.mp3" type="audio/mpeg" />
-  </audio>
-
-  <script src="script.js"></script>
 </body>
 </html>

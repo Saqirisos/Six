@@ -1,125 +1,207 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
-/* ⚠️ cursor (pode não funcionar em alguns navegadores) */
-body {
-  cursor: url("cursor.png"), auto;
-}
-
-a, button {
-  cursor: pointer;
-}
-
-/* FUNDO */
-body {
-  font-family: Arial;
-  color: white;
-  background: radial-gradient(circle at center, #2b0000 0%, #000000 80%);
-  height: 100vh;
-}
-
-/* ENTER */
-#enter-screen {
-  position: fixed;
+html, body {
   width: 100%;
   height: 100%;
+}
+
+body {
   background: black;
+  color: white;
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  cursor: url("cursor.png") 5 5, auto;
+}
+
+a, #enter-screen {
+  cursor: url("cursor.png") 5 5, pointer;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  background: url("bg.gif") center/cover no-repeat;
+  filter: blur(14px) brightness(0.25);
+  transform: scale(1.08);
+  z-index: -2;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at center, rgba(120, 0, 20, 0.28), rgba(0,0,0,0.94) 70%);
+  z-index: -1;
+}
+
+#enter-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 999;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  transition: 0.7s ease;
   user-select: none;
 }
 
-.enter-text {
-  text-align: center;
-  font-size: 32px;
+#enter-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-.enter-text span {
+.enter-content {
+  text-align: center;
+}
+
+.enter-content h1 {
+  font-size: 34px;
+  text-shadow: 0 0 18px white, 0 0 28px crimson;
+}
+
+.enter-content p {
+  margin-top: 8px;
   font-size: 14px;
-  opacity: 0.6;
+  opacity: 0.55;
 }
 
-/* CONTAINER */
-.container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* PERFIL */
-.profile {
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 92%;
+  max-width: 390px;
+  transform: translate(-50%, -50%);
   text-align: center;
 }
 
-/* FOTO */
-.avatar {
-  width: 120px;
+.pfp {
+  width: 126px;
+  height: 126px;
+  object-fit: cover;
   border-radius: 50%;
-  box-shadow: 0 0 20px red;
+  border: 2px solid white;
+  box-shadow: 0 0 22px white, 0 0 45px crimson;
 }
 
-/* TEXTO */
 .name {
-  font-size: 28px;
-  margin-top: 10px;
+  margin-top: 12px;
+  font-size: 32px;
+  text-shadow: 0 0 12px white;
 }
 
 .bio {
+  margin-top: 8px;
   font-size: 14px;
-  opacity: 0.7;
-  margin: 10px 0;
+  line-height: 1.35;
+  opacity: 0.9;
 }
 
-/* ICONES */
+.about {
+  margin-top: 9px;
+  font-size: 13px;
+  opacity: 0.55;
+}
+
 .icons {
+  margin: 16px 0 16px;
   display: flex;
   justify-content: center;
-  gap: 15px;
-  margin: 15px 0;
+  align-items: center;
+  gap: 14px;
 }
 
-.icon {
-  width: 40px;
-  height: 40px;
-  background: #111;
+.icon-btn {
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 0 14px rgba(255,255,255,0.22);
+  transition: 0.25s ease;
+}
+
+.icon-btn:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 24px white;
+}
+
+.icon-btn img {
+  width: 18px !important;
+  height: 18px !important;
+  object-fit: contain;
+  display: block;
+}
+
+.spotify-card {
+  width: 100%;
+  min-height: 82px;
+  padding: 12px;
+  border-radius: 18px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 12px;
+  background: rgba(0,0,0,0.62);
+  border: 1px solid rgba(255,255,255,0.18);
+  box-shadow: 0 0 22px rgba(220,20,60,0.25);
+  backdrop-filter: blur(12px);
+  text-align: left;
 }
 
-.icon img {
-  width: 20px;
-  filter: brightness(0) invert(1);
+.album-cover,
+.album-placeholder {
+  width: 58px;
+  height: 58px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  object-fit: cover;
+  background: #191919;
 }
 
-/* SPOTIFY CARD */
-#spotify-card {
-  background: #111;
-  padding: 10px;
-  border-radius: 10px;
-  width: 250px;
-  margin: auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+.track-info {
+  width: 100%;
+  min-width: 0;
 }
 
-#spotify-card img {
-  width: 50px;
-  border-radius: 5px;
-}
-
-.song-title {
+.track-info b {
+  display: block;
   font-size: 14px;
+  margin-bottom: 4px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.song-artist {
+.track-info span {
+  display: block;
   font-size: 12px;
-  opacity: 0.6;
+  opacity: 0.65;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress {
+  margin-top: 9px;
+  width: 100%;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(255,255,255,0.18);
+  overflow: hidden;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 99px;
+  background: white;
+  box-shadow: 0 0 10px white;
 }

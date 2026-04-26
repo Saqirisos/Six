@@ -31,19 +31,17 @@ async function updateSpotify() {
     }
 
     const s = json.data.spotify;
-
-    const progress = ((Date.now() - s.timestamps.start) /
-                     (s.timestamps.end - s.timestamps.start)) * 100;
+    const start = s.timestamps.start;
+    const end = s.timestamps.end;
+    const percent = Math.min(100, Math.max(0, ((Date.now() - start) / (end - start)) * 100));
 
     card.innerHTML = `
       <img src="${s.album_art_url}" class="album-cover">
-
       <div class="track-info">
         <b>♫ ${s.song}</b>
         <span>${s.artist}</span>
-
         <div class="progress">
-          <div id="progress-bar" style="width:${progress}%"></div>
+          <div id="progress-bar" style="width:${percent}%"></div>
         </div>
       </div>
     `;
@@ -53,6 +51,7 @@ async function updateSpotify() {
       <div class="track-info">
         <b>erro</b>
         <span>lanyard offline</span>
+        <div class="progress"><div id="progress-bar"></div></div>
       </div>
     `;
   }

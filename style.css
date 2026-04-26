@@ -1,202 +1,155 @@
+/* RESET */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
+/* CURSOR */
 body {
-  margin: 0;
-  background: black;
-  color: white;
-  font-family: Arial, sans-serif;
-  overflow: hidden;
-  cursor: url("cursor.png") 16 16, auto;
+  cursor: url("cursor.png") 5 5, auto;
 }
 
-a, #enter-screen {
-  cursor: url("cursor.png") 16 16, pointer;
+a, button, #enter-screen {
+  cursor: url("cursor.png") 5 5, pointer;
 }
 
 /* FUNDO */
-.bg {
-  position: fixed;
-  inset: 0;
-  background: url("bg.gif") center/cover no-repeat;
-  filter: blur(14px) brightness(0.25);
-  transform: scale(1.08);
-  z-index: -4;
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+  background: radial-gradient(circle at center, #2b0000 0%, #000000 80%);
+  height: 100vh;
+  overflow: hidden;
 }
 
-.overlay {
-  position: fixed;
-  inset: 0;
-  background:
-    radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 40%),
-    radial-gradient(circle at center, rgba(150,0,20,0.25), rgba(0,0,0,0.95));
-}
-
-.noise {
-  position: fixed;
-  inset: 0;
-  opacity: 0.05;
-  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-}
-
-/* CLICK SCREEN */
+/* CLICK TO ENTER */
 #enter-screen {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: black;
-  z-index: 999;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: 0.8s;
+  font-size: 28px;
+  z-index: 999;
+  cursor: pointer;
+  letter-spacing: 2px;
 }
 
-#enter-screen.hide {
-  opacity: 0;
-  visibility: hidden;
-  pointer-events: none;
+/* CONTAINER */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.enter-content {
+/* PERFIL */
+.profile {
   text-align: center;
-  animation: pulse 2s infinite;
 }
 
-.enter-content h1 {
-  font-size: 34px;
-  text-shadow: 0 0 18px white, 0 0 28px crimson;
-}
-
-.enter-content p {
-  opacity: 0.5;
-}
-
-/* CENTRO */
-.center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 90%;
-  max-width: 420px;
-  animation: appear 1s cubic-bezier(.2,.8,.2,1);
-}
-
-/* PFP */
-.pfp {
-  width: 130px;
-  height: 130px;
+/* FOTO */
+.avatar {
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  border: 2px solid white;
-  animation: glowPulse 3s infinite;
+  box-shadow: 0 0 25px red;
+  margin-bottom: 15px;
 }
 
-@keyframes glowPulse {
-  0%,100% {
-    box-shadow: 0 0 18px white, 0 0 35px crimson;
-  }
-  50% {
-    box-shadow: 0 0 30px white, 0 0 70px crimson;
-  }
-}
-
-/* TEXTO */
+/* NOME */
 .name {
-  font-size: 34px;
-  margin: 10px 0;
-  text-shadow: 0 0 12px white;
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
+/* BIO */
 .bio {
-  opacity: 0.9;
+  font-size: 14px;
+  opacity: 0.7;
+  margin-bottom: 20px;
 }
 
-.about {
-  opacity: 0.5;
-  margin-top: 8px;
-}
-
-/* ÍCONES */
+/* ICONES */
 .icons {
   display: flex;
   justify-content: center;
-  gap: 16px;
-  margin: 15px 0;
-}
-
-.icons a {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.2);
-  box-shadow: 0 0 10px rgba(255,255,255,0.3);
-  transition: 0.25s;
-}
-
-.icons a:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 25px white;
+  gap: 15px;
+  margin-bottom: 25px;
 }
 
 .icon {
-  width: 18px;
-}
-
-/* SPOTIFY */
-.spotify-card {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #111;
   display: flex;
-  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  transition: 0.2s;
+}
+
+.icon img {
+  width: 18px;
+  filter: brightness(0) invert(1);
+}
+
+.icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px white;
+}
+
+/* CARD MUSICA */
+#spotify-card {
+  margin-top: 10px;
+  background: #111;
   padding: 12px;
-  border-radius: 16px;
-  background: rgba(0,0,0,0.6);
-  border: 1px solid rgba(255,255,255,0.2);
-  backdrop-filter: blur(10px);
-  transition: 0.3s;
-}
-
-.spotify-card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 0 25px rgba(255,255,255,0.2);
-}
-
-.album-cover,
-.album-placeholder {
-  width: 60px;
-  height: 60px;
   border-radius: 12px;
-  background: #222;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 0 15px rgba(255,0,0,0.4);
 }
 
-.track-info {
-  flex: 1;
+/* CAPA */
+#spotify-card img {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+}
+
+/* TEXTO MUSICA */
+.song-info {
   text-align: left;
 }
 
-.progress {
-  height: 4px;
-  background: rgba(255,255,255,0.2);
-  margin-top: 6px;
-  border-radius: 10px;
+.song-title {
+  font-size: 14px;
+  font-weight: bold;
 }
 
-#progress-bar {
-  height: 100%;
-  background: white;
-  width: 0%;
+.song-artist {
+  font-size: 12px;
+  opacity: 0.7;
 }
 
-/* ANIMAÇÕES */
-@keyframes appear {
-  from { opacity: 0; transform: translate(-50%, -40%); }
-  to { opacity: 1; transform: translate(-50%, -50%); }
-}
-
+/* ANIMAÇÃO */
 @keyframes pulse {
-  0%,100% { opacity: 0.6; }
-  50% { opacity: 1; }
+  0% { box-shadow: 0 0 15px red; }
+  50% { box-shadow: 0 0 30px red; }
+  100% { box-shadow: 0 0 15px red; }
+}
+
+.avatar {
+  animation: pulse 2s infinite;
 }

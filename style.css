@@ -1,67 +1,187 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: white;
-    background: black;
-    overflow: hidden;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: white;
+  background: black;
+  overflow: hidden;
+  cursor: url("cursor.png") 16 16, auto;
 }
 
-/* fundo */
+a, button, .btn, #enter-screen {
+  cursor: url("cursor.png") 16 16, pointer;
+}
+
 .bg {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: url("bg.gif") center/cover no-repeat;
-    filter: blur(14px) brightness(0.35);
+  position: fixed;
+  inset: 0;
+  background: url("bg.gif") center/cover no-repeat;
+  filter: blur(12px) brightness(0.35);
+  transform: scale(1.05);
+  z-index: -3;
 }
 
-/* centro */
+.dark-overlay {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle, rgba(0,0,0,0.15), rgba(0,0,0,0.85));
+  z-index: -2;
+}
+
+#enter-screen {
+  position: fixed;
+  inset: 0;
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+#enter-screen.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.enter-box {
+  text-align: center;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+#enter-title {
+  font-size: 34px;
+  letter-spacing: 2px;
+  text-transform: lowercase;
+  text-shadow: 0 0 18px crimson;
+}
+
+#enter-subtitle {
+  opacity: 0.65;
+  font-size: 14px;
+}
+
 .center {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  max-width: 420px;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  animation: fadeIn 1.4s ease;
 }
 
-/* foto */
 .pfp {
-    width: 130px;
-    border-radius: 50%;
-    border: 2px solid red;
-    box-shadow: 0 0 20px red;
-    transition: 0.3s;
+  width: 135px;
+  height: 135px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid crimson;
+  box-shadow: 0 0 22px crimson;
+  transition: 0.3s;
 }
 
 .pfp:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
+  box-shadow: 0 0 35px crimson;
 }
 
-/* nome */
-h1 {
-    margin-top: 10px;
-    font-size: 28px;
+#name {
+  margin: 12px 0 6px;
+  font-size: 32px;
+  text-shadow: 0 0 12px white;
 }
 
-/* bio */
 .bio {
-    opacity: 0.85;
-    margin-top: 5px;
+  margin: 8px 0 0;
+  opacity: 0.85;
+  line-height: 1.4;
 }
 
-/* about */
 .about {
-    margin-top: 10px;
-    font-size: 14px;
-    opacity: 0.6;
+  margin: 10px 0 18px;
+  opacity: 0.58;
+  font-size: 14px;
+  line-height: 1.4;
 }
 
-/* leve animação */
-.center {
-    animation: fade 1.5s ease;
+.buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 14px;
 }
 
-@keyframes fade {
-    from {opacity: 0; transform: translate(-50%, -60%);}
-    to {opacity: 1; transform: translate(-50%, -50%);}
+.btn {
+  padding: 9px 16px;
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 999px;
+  text-decoration: none;
+  color: white;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(8px);
+  transition: 0.25s;
+}
+
+.btn:hover {
+  background: rgba(220,20,60,0.35);
+  box-shadow: 0 0 15px crimson;
+}
+
+.spotify-card {
+  width: 100%;
+  padding: 14px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  text-align: left;
+  background: rgba(10,10,10,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+}
+
+.spotify-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: crimson;
+  box-shadow: 0 0 18px crimson;
+  font-size: 26px;
+}
+
+.spotify-card h3 {
+  margin: 0;
+}
+
+.spotify-card p {
+  margin: 4px 0 0;
+  opacity: 0.65;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
+  }
 }

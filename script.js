@@ -1,42 +1,68 @@
 const USER_ID = "1038593406148038778";
 
-const enterScreen = document.getElementById("enter-screen");
+const enter = document.getElementById("enter-screen");
 const music = document.getElementById("music");
 const card = document.getElementById("card");
 
-enterScreen.addEventListener("click", async () => {
-  enterScreen.classList.add("hide");
+enter.addEventListener("click", async () => {
+  enter.classList.add("hide");
 
   try {
     music.volume = 0.35;
     await music.play();
   } catch (e) {
-    console.log("Música bloqueada ou arquivo não encontrado.");
+    console.log("música local não tocou");
   }
 });
 
-async function getSpotify() {
-  if (!card) return;
-
+async function updateSpotify() {
   try {
     const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
     const json = await res.json();
 
-    if (json.data && json.data.listening_to_spotify) {
-      const s = json.data.spotify;
-
+    if (!json.success || !json.data.listening_to_spotify) {
       card.innerHTML = `
-        <strong>ouvindo agora</strong><br>
-        ${s.song}<br>
-        <span style="opacity: .6">${s.artist}</span>
+        <div class="album-placeholder"></div>
+        <div class="track-info">
+          <b>nada tocando agora</b>
+          <span>spotify offline</span>
+          <div class="progress"><div id="progress-bar"></div></div>
+        </div>
       `;
-    } else {
-      card.innerHTML = "não estou ouvindo nada agora";
+      return;
     }
+
+    const s = json.data.spotify;
+
+    const start = s.timestamps.start;
+    const end = s.timestamps.end;
+    const now = Date.now();
+
+    const percent = Math.min(100, Math.max(0, ((now - start) / (end - start)) * 100));
+
+    card.innerHTML = `
+      <img src="${s.album_art_url}" class="album-cover">
+
+      <div class="track-info">
+        <b>♫ ${s.song}</b>
+        <span>${s.artist}</span>
+
+        <div class="progress">
+          <div id="progress-bar" style="width:${percent}%"></div>
+        </div>
+      </div>
+    `;
   } catch (e) {
-    card.innerHTML = "erro ao carregar spotify";
+    card.innerHTML = `
+      <div class="album-placeholder"></div>
+      <div class="track-info">
+        <b>erro ao carregar</b>
+        <span>lanyard não respondeu</span>
+        <div class="progress"><div id="progress-bar"></div></div>
+      </div>
+    `;
   }
 }
 
-getSpotify();
-setInterval(getSpotify, 5000);
+updateSpotify();
+setInterval(updateSpotify, 3000);

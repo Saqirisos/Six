@@ -1,101 +1,69 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Six</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Six</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<!-- ENTER -->
-<div id="enter-screen">
-  <h1>bem vindo ao inferno</h1>
-</div>
-
-<!-- FUNDO -->
-<div class="bg"></div>
-
-<!-- CONTEÚDO -->
-<div class="center">
-
-  <img src="pfp.png" class="pfp">
-
-  <h1>Six</h1>
-
-  <p class="bio">
-    eu ainda penso<br>
-    mas já não digo mais nada
-  </p>
-
-  <p class="about">
-    só aprendi a lidar com o que ficou
-  </p>
-
-  <!-- ICONES LIMPOS -->
-  <div class="icons">
-
-    <a href="https://open.spotify.com/user/s3q266mq8jbsca79dc3tbyz3j" target="_blank">
-      <img src="https://cdn.simpleicons.org/spotify/white" class="icon">
-    </a>
-
-    <a href="https://discord.com/users/1038593406148038778" target="_blank">
-      <img src="https://cdn.simpleicons.org/discord/white" class="icon">
-    </a>
-
+  <div id="enter-screen">
+    <div class="enter-content">
+      <h1>bem vindo ao inferno</h1>
+      <p>click to enter</p>
+    </div>
   </div>
 
-  <!-- CARD -->
-  <div class="spotify-card" id="card">
-    carregando...
-  </div>
+  <div class="bg"></div>
+  <div class="overlay"></div>
+  <div class="noise"></div>
 
-</div>
+  <main class="center">
 
-<!-- MUSICA -->
-<audio id="music" loop>
-  <source src="music.mp3">
-</audio>
+    <img src="pfp.png" class="pfp">
 
-<script>
-const USER_ID = "1038593406148038778";
+    <h1 class="name">Six</h1>
 
-const enter = document.getElementById("enter-screen");
-const music = document.getElementById("music");
-const card = document.getElementById("card");
+    <p class="bio">
+      eu ainda penso<br>
+      mas já não digo mais nada
+    </p>
 
-enter.onclick = async () => {
-  enter.classList.add("hide");
-  try {
-    music.volume = 0.4;
-    await music.play();
-  } catch {}
-};
+    <p class="about">
+      só aprendi a lidar com o que ficou
+    </p>
 
-async function update() {
-  try {
-    const res = await fetch(`https://api.lanyard.rest/v1/users/${USER_ID}`);
-    const data = await res.json();
+    <div class="icons">
+      <a href="https://open.spotify.com/user/s3q266mq8jbsca79dc3tbyz3j" target="_blank">
+        <img src="https://cdn.simpleicons.org/spotify/white" class="icon">
+      </a>
 
-    if (data.success && data.data.listening_to_spotify) {
-      const s = data.data.spotify;
+      <a href="https://discord.com/users/1038593406148038778" target="_blank">
+        <img src="https://cdn.simpleicons.org/discord/white" class="icon">
+      </a>
+    </div>
 
-      card.innerHTML = `
-        <b>♫ ouvindo agora</b><br>
-        ${s.song}<br>
-        <span>${s.artist}</span>
-      `;
-    } else {
-      card.innerText = "não estou ouvindo nada agora";
-    }
-  } catch {
-    card.innerText = "erro ao carregar";
-  }
-}
+    <section class="spotify-card" id="card">
+      <div class="album-placeholder"></div>
 
-update();
-setInterval(update, 5000);
-</script>
+      <div class="track-info">
+        <b>carregando...</b>
+        <span>aguarde</span>
+
+        <div class="progress">
+          <div id="progress-bar"></div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <audio id="music" loop>
+    <source src="music.mp3">
+  </audio>
+
+  <script src="script.js"></script>
 
 </body>
 </html>

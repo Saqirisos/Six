@@ -8,62 +8,68 @@
 
 <body>
 
-  <div id="enter-screen">
-    <div class="enter-content">
-      <h1>bem vindo ao inferno</h1>
-      <p>click to enter</p>
-    </div>
+<!-- CLICK TO ENTER -->
+<div id="enter-screen">
+  <div class="enter-content">
+    <h1>bem vindo ao inferno</h1>
+    <p>click to enter</p>
+  </div>
+</div>
+
+<!-- FUNDO -->
+<div class="bg"></div>
+<div class="overlay"></div>
+<div class="noise"></div>
+
+<!-- CONTEÚDO -->
+<main class="center">
+
+  <img src="pfp.png" class="pfp">
+
+  <h1 class="name">Six</h1>
+
+  <p class="bio">
+    eu ainda penso<br>
+    mas já não digo mais nada
+  </p>
+
+  <p class="about">
+    só aprendi a lidar com o que ficou
+  </p>
+
+  <!-- ÍCONES -->
+  <div class="icons">
+    <a href="https://open.spotify.com/user/s3q266mq8jbsca79dc3tbyz3j" target="_blank">
+      <img src="https://cdn.simpleicons.org/spotify/white" class="icon">
+    </a>
+
+    <a href="https://discord.com/users/1038593406148038778" target="_blank">
+      <img src="https://cdn.simpleicons.org/discord/white" class="icon">
+    </a>
   </div>
 
-  <div class="bg"></div>
-  <div class="overlay"></div>
-  <div class="noise"></div>
+  <!-- SPOTIFY -->
+  <section class="spotify-card" id="card">
+    <div class="album-placeholder"></div>
 
-  <main class="center">
+    <div class="track-info">
+      <b>carregando...</b>
+      <span>aguarde</span>
 
-    <img src="pfp.png" class="pfp">
-
-    <h1 class="name">Six</h1>
-
-    <p class="bio">
-      eu ainda penso<br>
-      mas já não digo mais nada
-    </p>
-
-    <p class="about">
-      só aprendi a lidar com o que ficou
-    </p>
-
-    <div class="icons">
-      <a href="https://open.spotify.com/user/s3q266mq8jbsca79dc3tbyz3j" target="_blank">
-        <img src="https://cdn.simpleicons.org/spotify/white" class="icon">
-      </a>
-
-      <a href="https://discord.com/users/1038593406148038778" target="_blank">
-        <img src="https://cdn.simpleicons.org/discord/white" class="icon">
-      </a>
-    </div>
-
-    <section class="spotify-card" id="card">
-      <div class="album-placeholder"></div>
-
-      <div class="track-info">
-        <b>carregando...</b>
-        <span>aguarde</span>
-
-        <div class="progress">
-          <div id="progress-bar"></div>
-        </div>
+      <div class="progress">
+        <div id="progress-bar"></div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+</main>
 
-  <audio id="music" loop>
-    <source src="music.mp3">
-  </audio>
+<!-- MÚSICA -->
+<audio id="music" loop>
+  <source src="music.mp3">
+</audio>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>

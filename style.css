@@ -29,9 +29,8 @@ a, #enter-screen {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(circle, rgba(255,255,255,0.08), transparent 35%),
-    radial-gradient(circle at center, rgba(120,0,20,0.14), rgba(0,0,0,0.9));
-  z-index: -3;
+    radial-gradient(circle at center, rgba(255,255,255,0.06), transparent 40%),
+    radial-gradient(circle at center, rgba(150,0,20,0.25), rgba(0,0,0,0.95));
 }
 
 .noise {
@@ -39,8 +38,6 @@ a, #enter-screen {
   inset: 0;
   opacity: 0.05;
   background-image: url("https://grainy-gradients.vercel.app/noise.svg");
-  z-index: -2;
-  pointer-events: none;
 }
 
 /* ENTER */
@@ -68,13 +65,11 @@ a, #enter-screen {
 
 .enter-content h1 {
   font-size: 34px;
-  letter-spacing: 1px;
   text-shadow: 0 0 18px white, 0 0 28px crimson;
 }
 
 .enter-content p {
-  opacity: 0.55;
-  font-size: 13px;
+  opacity: 0.5;
 }
 
 /* CENTRO */
@@ -82,49 +77,59 @@ a, #enter-screen {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 92%;
-  max-width: 420px;
   transform: translate(-50%, -50%);
   text-align: center;
-  animation: appear 1.2s ease;
+  width: 90%;
+  max-width: 420px;
+  animation: appear 1s cubic-bezier(.2,.8,.2,1);
 }
 
 /* FOTO */
 .pfp {
-  width: 128px;
-  height: 128px;
-  object-fit: cover;
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.9);
-  box-shadow:
-    0 0 18px white,
-    0 0 35px rgba(220,20,60,0.65);
-  transition: 0.3s ease;
+  border: 2px solid white;
+  animation: glowPulse 3s infinite ease-in-out;
 }
 
-.pfp:hover {
-  transform: scale(1.05) rotate(1deg);
-  box-shadow:
-    0 0 25px white,
-    0 0 55px crimson;
+@keyframes glowPulse {
+  0%,100% {
+    box-shadow:
+      0 0 18px white,
+      0 0 35px crimson;
+  }
+  50% {
+    box-shadow:
+      0 0 30px white,
+      0 0 70px crimson;
+  }
 }
 
+/* TEXTO */
 .name {
-  margin: 13px 0 8px;
   font-size: 34px;
-  text-shadow: 0 0 12px white;
+  margin: 10px 0;
+  position: relative;
+}
+
+.name::after {
+  content: "Six";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: crimson;
+  opacity: 0.2;
+  transform: translate(2px, -2px);
 }
 
 .bio {
   opacity: 0.9;
-  margin: 0;
-  line-height: 1.35;
 }
 
 .about {
-  opacity: 0.55;
-  font-size: 14px;
-  margin: 10px 0 16px;
+  opacity: 0.5;
+  margin-top: 8px;
 }
 
 /* ÍCONES */
@@ -132,7 +137,7 @@ a, #enter-screen {
   display: flex;
   justify-content: center;
   gap: 16px;
-  margin: 15px 0 18px;
+  margin: 15px 0;
 }
 
 .icons a {
@@ -142,114 +147,70 @@ a, #enter-screen {
   display: grid;
   place-items: center;
   background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow: 0 0 14px rgba(255,255,255,0.25);
-  backdrop-filter: blur(8px);
-  transition: 0.25s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 10px rgba(255,255,255,0.3);
+  transition: 0.25s;
 }
 
 .icons a:hover {
-  transform: translateY(-2px) scale(1.08);
-  box-shadow: 0 0 22px white;
+  transform: scale(1.1);
+  box-shadow: 0 0 25px white;
 }
 
 .icon {
   width: 18px;
-  height: 18px;
-  opacity: 0.95;
 }
 
-/* CARD SPOTIFY */
+/* SPOTIFY */
 .spotify-card {
-  width: 100%;
-  min-height: 86px;
-  padding: 12px;
-  border-radius: 18px;
-
   display: flex;
-  align-items: center;
-  gap: 13px;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 16px;
+  background: rgba(0,0,0,0.6);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(10px);
+  transition: 0.3s;
+}
 
-  background: rgba(0,0,0,0.55);
-  border: 1px solid rgba(255,255,255,0.18);
-  box-shadow:
-    0 0 18px rgba(255,255,255,0.08),
-    inset 0 0 25px rgba(255,255,255,0.03);
-  backdrop-filter: blur(14px);
-  text-align: left;
+.spotify-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 25px rgba(255,255,255,0.2);
 }
 
 .album-cover,
 .album-placeholder {
-  width: 62px;
-  height: 62px;
-  border-radius: 13px;
-  flex-shrink: 0;
-  object-fit: cover;
-  background: linear-gradient(135deg, #111, #333);
-  box-shadow: 0 0 16px rgba(255,255,255,0.15);
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: #222;
 }
 
 .track-info {
-  width: 100%;
-  min-width: 0;
-}
-
-.track-info b {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 4px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.track-info span {
-  display: block;
-  font-size: 13px;
-  opacity: 0.62;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: 1;
+  text-align: left;
 }
 
 .progress {
-  margin-top: 9px;
-  width: 100%;
   height: 4px;
-  border-radius: 99px;
-  background: rgba(255,255,255,0.16);
-  overflow: hidden;
+  background: rgba(255,255,255,0.2);
+  margin-top: 6px;
+  border-radius: 10px;
 }
 
 #progress-bar {
-  width: 0%;
   height: 100%;
-  border-radius: 99px;
   background: white;
-  box-shadow: 0 0 10px white;
-  transition: width 0.5s linear;
+  width: 0%;
 }
 
 /* ANIMAÇÕES */
 @keyframes appear {
-  from {
-    opacity: 0;
-    transform: translate(-50%, -44%);
-  }
-  to {
-    opacity: 1;
-    transform: translate(-50%, -50%);
-  }
+  from { opacity: 0; transform: translate(-50%, -40%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
 }
 
 @keyframes pulse {
-  0%, 100% {
-    opacity: 0.7;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.03);
-  }
+  0%,100% { opacity: 0.6; }
+  50% { opacity: 1; }
 }
